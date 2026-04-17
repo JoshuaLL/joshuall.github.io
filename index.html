@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HaruTabi — 日本旅行打卡收集</title>
+<meta name="description" content="HaruTabi 是一款日本旅行打卡 app。GPS 自動打卡 47 都道府縣與 70 個經典溫泉、22 個名勝，解鎖專屬印章，繪製你獨一無二的日本旅行地圖。">
+<meta property="og:title" content="HaruTabi — 日本旅行打卡收集">
+<meta property="og:description" content="踏進日本每個角落，收集屬於你的旅行印記。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://joshuall.github.io/">
+<link rel="icon" type="image/png" href="icon.png">
+<style>
+  :root {
+    --pink: #F5A6B5;
+    --pink-dark: #D97B8E;
+    --bg: #FFF8F6;
+    --text: #2A1F1F;
+    --text-muted: #6B5A5A;
+    --card: #FFFFFF;
+    --border: #F0E0E0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    text-align: center;
+    padding: 80px 24px 48px;
+    background: linear-gradient(180deg, #FFE8EB 0%, var(--bg) 100%);
+  }
+  header img.icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 28px;
+    box-shadow: 0 8px 24px rgba(217, 123, 142, 0.25);
+    margin-bottom: 24px;
+  }
+  header h1 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+  header .tagline {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .store-badges {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .store-badges a {
+    display: inline-block;
+    padding: 14px 28px;
+    background: var(--text);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .store-badges a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
+  .store-badges a.disabled {
+    background: #CCC;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .store-badges .sub {
+    display: block;
+    font-size: 11px;
+    opacity: 0.7;
+    margin-bottom: 2px;
+  }
+
+  section {
+    padding: 64px 0;
+    border-top: 1px solid var(--border);
+  }
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .feature {
+    background: var(--card);
+    padding: 28px 24px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  .feature .emoji { font-size: 32px; margin-bottom: 12px; display: block; }
+  .feature h3 { font-size: 17px; margin-bottom: 8px; }
+  .feature p { font-size: 14px; color: var(--text-muted); }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .stat {
+    text-align: center;
+    padding: 24px 12px;
+    background: var(--card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  .stat .num {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--pink-dark);
+    display: block;
+    line-height: 1;
+  }
+  .stat .label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 48px 24px;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+  }
+  footer a {
+    color: var(--pink-dark);
+    text-decoration: none;
+    margin: 0 8px;
+  }
+  footer a:hover { text-decoration: underline; }
+  footer .copyright { margin-top: 16px; }
+
+  @media (max-width: 560px) {
+    header { padding: 56px 24px 32px; }
+    header h1 { font-size: 32px; }
+    header .tagline { font-size: 16px; }
+    h2 { font-size: 24px; }
+    section { padding: 48px 0; }
+    .stats { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img class="icon" src="icon.png" alt="HaruTabi" onerror="this.style.display='none'">
+  <h1>HaruTabi 春旅</h1>
+  <p class="tagline">踏進日本每個角落，收集屬於你的旅行印記。</p>
+  <div class="store-badges">
+    <a href="#" class="disabled">
+      <span class="sub">Coming Soon</span>
+      App Store
+    </a>
+    <a href="#" class="disabled">
+      <span class="sub">Coming Soon</span>
+      Google Play
+    </a>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <h2>收集你的日本地圖</h2>
+    <div class="stats">
+      <div class="stat"><span class="num">47</span><span class="label">都道府縣</span></div>
+      <div class="stat"><span class="num">70</span><span class="label">經典溫泉</span></div>
+      <div class="stat"><span class="num">22</span><span class="label">名勝景點</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>主要功能</h2>
+    <div class="features">
+      <div class="feature">
+        <span class="emoji">📍</span>
+        <h3>GPS 自動打卡</h3>
+        <p>走到景點附近，app 自動感應並解鎖收集。不用找按鈕、不用滑菜單。</p>
+      </div>
+      <div class="feature">
+        <span class="emoji">🗾</span>
+        <h3>互動式日本地圖</h3>
+        <p>47 都道府縣上色進度一目瞭然。放大後顯示 22 個主要城市標記。</p>
+      </div>
+      <div class="feature">
+        <span class="emoji">♨️</span>
+        <h3>溫泉印章冊</h3>
+        <p>收集 70 個獨特設計的溫泉印章，每一個都是該溫泉的地標插畫。</p>
+      </div>
+      <div class="feature">
+        <span class="emoji">🌸</span>
+        <h3>分享你的旅程</h3>
+        <p>一鍵生成高清打卡卡片，分享到 IG / FB 限時動態，展示你的日本地圖。</p>
+      </div>
+      <div class="feature">
+        <span class="emoji">📝</span>
+        <h3>經過・觀光・住宿</h3>
+        <p>為每個城市標記你的旅行方式，建立細緻的日本旅行履歷。</p>
+      </div>
+      <div class="feature">
+        <span class="emoji">☁️</span>
+        <h3>雲端同步</h3>
+        <p>登入後資料自動同步跨裝置，換手機也不怕遺失打卡紀錄。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="harutabi-privacy/">Privacy Policy</a>
+  ·
+  <a href="harutabi-privacy/#contact">Contact</a>
+  <div class="copyright">© 2026 HaruTabi. Made with 🌸 in Taiwan.</div>
+</footer>
+
+</body>
+</html>
